@@ -1,9 +1,9 @@
 using System.Text.Json.Serialization;
 
-namespace trade_classification_api.Models.Enums
+namespace domain.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum ClientSectorEnum
+    public enum ClientSector
     {
         Unknown,
         Public,
