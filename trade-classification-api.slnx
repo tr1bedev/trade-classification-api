@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="application/application.csproj" Id="b1ee6489-e68c-456c-9312-91c0ee26848d" />
+  <Project Path="domain/domain.csproj" Id="f26315b3-b907-4d7d-ad01-9b15bcd23b88" />
+  <Project Path="tests/tests.csproj" Id="8fdf99a0-83fc-44bb-9eb2-1c2cd43eadd0" />
   <Project Path="trade-classification-api/trade-classification-api.csproj" />
 </Solution>
