@@ -5,6 +5,6 @@ namespace application.Interfaces
 {
     public interface ITradeAnalyzer
     {
-        (List<RiskCategory> Categories, Dictionary<RiskCategory, TradeSummary> Summary) Analyze(List<Trade> trades);
+        (List<RiskCategory> Categories, Dictionary<RiskCategory, TradeSummary> Summary, long ProcessingTimeMs) Analyze(List<Trade> trades);
     }
 }

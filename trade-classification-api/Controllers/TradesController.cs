@@ -44,8 +44,8 @@ namespace trade_classification_api.Controllers
             try
             {
                 _logger.LogInformation("Analyzing {Count} trades", trades.Count);
-                var (categories, summary) = _analyzer.Analyze(trades);
-                return Ok(new { categories, summary });
+                var (categories, summary, processingTimeMs) = _analyzer.Analyze(trades);
+                return Ok(new { categories, summary, processingTimeMs });
             }
             catch (Exception ex)
             {

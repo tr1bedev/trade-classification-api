@@ -4,6 +4,6 @@
     {
         public int Count { get; set; }
         public decimal TotalValue { get; set; }
-        public string TopClient { get; set; }
+        public string TopClient { get; init; } = String.Empty;
     }
 }

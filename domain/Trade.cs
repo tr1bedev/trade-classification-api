@@ -10,6 +10,7 @@ namespace domain
         public decimal Value { get; init; }
         [Required]
         public ClientSector ClientSector { get; init; } = ClientSector.Unknown;
-        public string ClientId { get; set; }
+        [Required]
+        public string ClientId { get; init; } = String.Empty;
     }
 }

@@ -14,7 +14,7 @@ namespace application
             _classifier = classifier;
         }
 
-        public (List<RiskCategory> Categories, Dictionary<RiskCategory, TradeSummary> Summary) Analyze(List<Trade> trades)
+        public (List<RiskCategory> Categories, Dictionary<RiskCategory, TradeSummary> Summary, long ProcessingTimeMs) Analyze(List<Trade> trades)
         {
             var stopwatch = Stopwatch.StartNew();
             var categories = new List<RiskCategory>(trades.Count);
@@ -28,13 +28,13 @@ namespace application
                 if (!summaries.TryGetValue(category, out var data))
                 {
                     data = (0, 0m, new Dictionary<string, decimal>());
-                    summaries[category] = data;
                 }
 
-                data.Count++;
-                data.TotalValue += trade.Value;
                 data.ClientExposures.TryGetValue(trade.ClientId, out var exposure);
                 data.ClientExposures[trade.ClientId] = exposure + trade.Value;
+
+                data = (data.Count + 1, data.TotalValue + trade.Value, data.ClientExposures);
+                summaries[category] = data;
             }
 
             var finalSummary = new Dictionary<RiskCategory, TradeSummary>();
@@ -50,7 +50,10 @@ namespace application
             }
 
             stopwatch.Stop();
-            return (categories, finalSummary);
+
+            var processingTimeMs = stopwatch.ElapsedMilliseconds;
+
+            return (categories, finalSummary, processingTimeMs);
         }
     }
 }
