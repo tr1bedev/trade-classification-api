@@ -29,3 +29,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// Expose a Program type so WebApplicationFactory<Program> can discover the app entry point
+public partial class Program { }
